@@ -13,6 +13,8 @@ public class TankActor : MonoBehaviour {
     void Start ()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        agent.stoppingDistance = 5.0f;
 	}
 	
 	// Update is called once per frame
@@ -29,5 +31,10 @@ public class TankActor : MonoBehaviour {
     public void SetDestination(Vector3 position)
     {
         agent.SetDestination(position);
+    }
+
+    public void FollowLeader(TankActor commander)
+    {
+        agent.SetDestination(commander.transform.position);
     }
 }
