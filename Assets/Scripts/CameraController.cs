@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour {
         {
             transform.position += new Vector3(0, -controller.RightStickY, 0);
 
-            float zoom = Mathf.Clamp(transform.position.y, 10.0f, 50.0f);
+            float zoom = Mathf.Clamp(transform.position.y, MinZoom, MaxZoom);
 
             transform.position = new Vector3(transform.position.x, zoom, transform.position.z);
         }
@@ -38,8 +38,8 @@ public class CameraController : MonoBehaviour {
         {
             this.transform.position += new Vector3(controller.RightStickX, 0, controller.RightStickY);
 
-            float panX = Mathf.Clamp(transform.position.x, -50.0f, 50.0f);
-            float panZ = Mathf.Clamp(transform.position.z, -50.0f, 50.0f);
+            float panX = Mathf.Clamp(transform.position.x, MinPanX, MaxPanX);
+            float panZ = Mathf.Clamp(transform.position.z, MinPanZ, MaxPanZ);
 
             transform.position = new Vector3(panX, transform.position.y, panZ);
         }

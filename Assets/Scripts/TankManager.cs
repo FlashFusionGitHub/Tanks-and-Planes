@@ -10,9 +10,11 @@ public class TankManager : MonoBehaviour {
 
     public List<TankActor> tanks;
 
-
-
     private int TankIndex = 0;
+
+    public GameObject marker;
+
+    private GameObject oldMarker;
 
     private void Awake()
     {
@@ -32,6 +34,8 @@ public class TankManager : MonoBehaviour {
             if (TankIndex == tanks.Count - 1)
                 return;
 
+            Destroy(oldMarker);
+
             TankIndex += 1;
 
             SelectedTank(TankIndex);
@@ -42,6 +46,8 @@ public class TankManager : MonoBehaviour {
             if (TankIndex == 0)
                 return;
 
+            Destroy(oldMarker);
+
             TankIndex -= 1;
 
             SelectedTank(TankIndex);
@@ -51,5 +57,7 @@ public class TankManager : MonoBehaviour {
     void SelectedTank(int index)
     {
         Debug.Log(tanks[index].name);
+
+        oldMarker = Instantiate(marker, tanks[index].transform.position, Quaternion.identity);
     }
 }
