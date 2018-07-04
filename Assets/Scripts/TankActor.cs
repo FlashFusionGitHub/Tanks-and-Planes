@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TankActor : MonoBehaviour {
 
     public bool isCommander;
 
-	// Use this for initialization
-	void Start ()
+    private NavMeshAgent agent;
+
+    // Use this for initialization
+    void Start ()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
 	}
 	
 	// Update is called once per frame
@@ -21,5 +24,10 @@ public class TankActor : MonoBehaviour {
     public void SetCommander(bool state)
     {
         isCommander = state;
+    }
+
+    public void SetDestination(Vector3 position)
+    {
+        agent.SetDestination(position);
     }
 }
