@@ -95,6 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b628f25a0df3aa545be1d113c20cb0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinXPos: -50
+  MaxXPos: 50
+  MinZPos: -50
+  MaxZPos: 50
 --- !u!136 &136064702087368354
 CapsuleCollider:
   m_ObjectHideFlags: 1

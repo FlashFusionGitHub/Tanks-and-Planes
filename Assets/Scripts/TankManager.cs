@@ -32,6 +32,9 @@ public class TankManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+
+        currentMarker = Instantiate(marker);
+
         foreach (TankActor tank in party1)
         {
             if (tank.isCommander == true)
@@ -61,7 +64,11 @@ public class TankManager : MonoBehaviour {
 	void Update ()
     {
         if(tankIndex >= 0)
+        {
             currentCircle.transform.position = commanderTanks[tankIndex].transform.position;
+
+            commanderTanks[tankIndex].turret.transform.LookAt(currentMarker.transform);
+        }
 
         foreach (TankActor tank in party1)
         {
@@ -92,7 +99,6 @@ public class TankManager : MonoBehaviour {
             if (tankIndex == commanderTanks.Count - 1)
                 tankIndex = -1;
 
-            Destroy(currentMarker);
             Destroy(currentCircle);
 
             tankIndex += 1;
@@ -105,7 +111,6 @@ public class TankManager : MonoBehaviour {
             if (tankIndex <= 0)
                 tankIndex = commanderTanks.Count;
 
-            Destroy(currentMarker);
             Destroy(currentCircle);
 
             tankIndex -= 1;
@@ -122,6 +127,5 @@ public class TankManager : MonoBehaviour {
     void SelectedTank(int index)
     {
         currentCircle = Instantiate(circle, commanderTanks[index].transform.position, Quaternion.Euler(-90, 0, 0));
-        currentMarker = Instantiate(marker, commanderTanks[index].transform.position, Quaternion.identity);
     }
 }

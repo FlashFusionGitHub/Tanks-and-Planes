@@ -9,18 +9,23 @@ public class TankActor : MonoBehaviour {
 
     private NavMeshAgent agent;
 
+    public GameObject turret;
+
+    public bool team1;
+    public bool team2;
+
     // Use this for initialization
     void Start ()
     {
         agent = GetComponent<NavMeshAgent>();
 
-        agent.stoppingDistance = 5.0f;
+        if(!isCommander)
+            agent.stoppingDistance = 5.0f;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
 	}
 
     public void SetCommander(bool state)

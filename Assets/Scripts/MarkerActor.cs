@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarkerActor : MonoBehaviour {
+public class MarkerActor : MonoBehaviour
+{
 
     private InputDevice controller;
 
     public float MinXPos = -50.0f, MaxXPos = 50.0f;
     public float MinZPos = -50.0f, MaxZPos = 50.0f;
+
+    TankActor tank;
 
     private void Awake()
     {
@@ -16,13 +19,13 @@ public class MarkerActor : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    }
+
+    // Update is called once per frame
+    void Update()
     {
 
         transform.position += new Vector3(controller.LeftStickX, 0, controller.LeftStickY);
@@ -31,5 +34,33 @@ public class MarkerActor : MonoBehaviour {
         float markerZPos = Mathf.Clamp(transform.position.z, MinZPos, MaxZPos);
 
         transform.position = new Vector3(markerXPos, transform.position.y, markerZPos);
+
+
+        //placeholder
+        if (tank != null && controller.Action1.WasPressed)
+        {
+            Debug.Log("ATTACK");
+        }
+    }
+
+    TankActor GetEnemyToAttack()
+    {
+        if (tank != null)
+            return tank;
+        else
+            return null;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<TankActor>().team2)
+        {
+            tank = other.GetComponent<TankActor>();
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        tank = null;
     }
 }
