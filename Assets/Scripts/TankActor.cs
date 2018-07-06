@@ -5,41 +5,36 @@ using UnityEngine.AI;
 
 public class TankActor : MonoBehaviour {
 
-    public bool isCommander;
+    public bool m_isGeneral;
 
-    private NavMeshAgent agent;
+    public NavMeshAgent m_agent;
 
-    public GameObject turret;
+    public GameObject m_turret;
 
-    public bool team1;
-    public bool team2;
+    public bool m_team1;
+
+    public bool m_team2;
+
+    public float m_health = 10;
 
     // Use this for initialization
     void Start ()
     {
-        agent = GetComponent<NavMeshAgent>();
-
-        if(!isCommander)
-            agent.stoppingDistance = 5.0f;
+        m_agent = GetComponent<NavMeshAgent>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-	}
-
-    public void SetCommander(bool state)
-    {
-        isCommander = state;
     }
 
     public void SetDestination(Vector3 position)
     {
-        agent.SetDestination(position);
+        m_agent.SetDestination(position);
     }
 
     public void FollowLeader(TankActor commander)
     {
-        agent.SetDestination(commander.transform.position);
+        m_agent.SetDestination(commander.transform.position);
     }
 }

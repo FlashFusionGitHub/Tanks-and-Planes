@@ -11,6 +11,8 @@ public class MarkerActor : MonoBehaviour
     public float MinXPos = -50.0f, MaxXPos = 50.0f;
     public float MinZPos = -50.0f, MaxZPos = 50.0f;
 
+    public int rotationSpeed = 1;
+
     TankActor tank;
 
     private void Awake()
@@ -34,16 +36,9 @@ public class MarkerActor : MonoBehaviour
         float markerZPos = Mathf.Clamp(transform.position.z, MinZPos, MaxZPos);
 
         transform.position = new Vector3(markerXPos, transform.position.y, markerZPos);
-
-
-        //placeholder
-        if (tank != null && controller.Action1.WasPressed)
-        {
-            Debug.Log("ATTACK");
-        }
     }
 
-    TankActor GetEnemyToAttack()
+    public TankActor GetEnemyToAttack()
     {
         if (tank != null)
             return tank;
@@ -53,7 +48,7 @@ public class MarkerActor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<TankActor>().team2)
+        if (other.gameObject.GetComponent<TankActor>().m_team2)
         {
             tank = other.GetComponent<TankActor>();
         }

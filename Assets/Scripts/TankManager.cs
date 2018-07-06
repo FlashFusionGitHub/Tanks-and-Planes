@@ -8,13 +8,7 @@ public class TankManager : MonoBehaviour {
 
     private InputDevice controller;
 
-    public List<TankActor> commanderTanks;
-
-    public List<TankActor> party1;
-    public List<TankActor> party2;
-    public List<TankActor> party3;
-
-    public int numOfCommanders = 3;
+    public List<SquadController> squads;
 
     private int tankIndex = -1;
 
@@ -32,71 +26,22 @@ public class TankManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
         currentMarker = Instantiate(marker);
-
-        foreach (TankActor tank in party1)
-        {
-            if (tank.isCommander == true)
-            {
-                commanderTanks.Add(tank);
-            }
-        }
-
-        foreach (TankActor tank in party2)
-        {
-            if (tank.isCommander == true)
-            {
-                commanderTanks.Add(tank);
-            }
-        }
-
-        foreach (TankActor tank in party3)
-        {
-            if (tank.isCommander == true)
-            {
-                commanderTanks.Add(tank);
-            }
-        }
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if(tankIndex >= 0)
+        if (tankIndex >= 0)
         {
-            currentCircle.transform.position = commanderTanks[tankIndex].transform.position;
+            currentCircle.transform.position = squads[tankIndex].m_general.transform.position;
 
-            commanderTanks[tankIndex].turret.transform.LookAt(currentMarker.transform);
-        }
-
-        foreach (TankActor tank in party1)
-        {
-            if(tank.isCommander == false)
-            {
-                tank.FollowLeader(commanderTanks[0]);
-            }
-        }
-
-        foreach (TankActor tank in party2)
-        {
-            if (tank.isCommander == false)
-            {
-                tank.FollowLeader(commanderTanks[1]);
-            }
-        }
-
-        foreach (TankActor tank in party3)
-        {
-            if (tank.isCommander == false)
-            {
-                tank.FollowLeader(commanderTanks[2]);
-            }
+            squads[tankIndex].m_general.m_turret.transform.LookAt(currentMarker.transform);
         }
 
         if (controller.DPadRight.WasPressed)
         {
-            if (tankIndex == commanderTanks.Count - 1)
+            if (tankIndex == squads.Count - 1)
                 tankIndex = -1;
 
             Destroy(currentCircle);
@@ -109,7 +54,7 @@ public class TankManager : MonoBehaviour {
         if (controller.DPadLeft.WasPressed)
         {
             if (tankIndex <= 0)
-                tankIndex = commanderTanks.Count;
+                tankIndex = squads.Count;
 
             Destroy(currentCircle);
 
@@ -120,12 +65,12 @@ public class TankManager : MonoBehaviour {
 
         if (controller.Action1.WasPressed && tankIndex >= 0)
         {
-           commanderTanks[tankIndex].SetDestination(currentMarker.transform.position);
+            squads[tankIndex].m_general.SetDestination(currentMarker.transform.position);
         }
     }
 
     void SelectedTank(int index)
     {
-        currentCircle = Instantiate(circle, commanderTanks[index].transform.position, Quaternion.Euler(-90, 0, 0));
+        currentCircle = Instantiate(circle, squads[tankIndex].m_general.transform.position, Quaternion.Euler(-90, 0, 0));
     }
 }
