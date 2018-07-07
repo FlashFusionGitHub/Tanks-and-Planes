@@ -8,9 +8,12 @@ public class TankManager : MonoBehaviour {
 
     private InputDevice controller;
 
+
+    public CameraController m_camera;
+
     public List<SquadController> squads;
 
-    private int tankIndex = -1;
+    private int tankIndex = 0;
 
     public GameObject marker;
     public GameObject circle;
@@ -27,50 +30,69 @@ public class TankManager : MonoBehaviour {
     void Start()
     {
         currentMarker = Instantiate(marker);
+
+        SelectedTank(tankIndex);
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (tankIndex >= 0)
+        if(squads.Count > 0)
         {
-            currentCircle.transform.position = squads[tankIndex].m_general.transform.position;
+            if (tankIndex >= 0)
+            {
+                currentCircle.transform.position = squads[tankIndex].m_general.transform.position;
 
-            squads[tankIndex].m_general.m_turret.transform.LookAt(currentMarker.transform);
+                squads[tankIndex].m_general.m_turret.transform.LookAt(currentMarker.transform);
+
+                if (squads[tankIndex].numSquadMembers <= 0)
+                {
+                    squads.Remove(squads[tankIndex]);
+
+                    return;
+                }
+            }
+
+            if (controller.DPadRight.WasPressed)
+            {
+                if (tankIndex == squads.Count - 1)
+                    tankIndex = -1;
+
+                Destroy(currentCircle);
+
+                tankIndex += 1;
+
+                SelectedTank(tankIndex);
+            }
+
+            if (controller.DPadLeft.WasPressed)
+            {
+                if (tankIndex <= 0)
+                    tankIndex = squads.Count;
+
+                Destroy(currentCircle);
+
+                tankIndex -= 1;
+
+                SelectedTank(tankIndex);
+            }
+
+            if (controller.Action1.WasPressed && tankIndex >= 0)
+            {
+                squads[tankIndex].m_general.SetDestination(currentMarker.transform.position);
+            }
         }
-
-        if (controller.DPadRight.WasPressed)
+        else
         {
-            if (tankIndex == squads.Count - 1)
-                tankIndex = -1;
-
+            Debug.Log("No Squads Left");
             Destroy(currentCircle);
-
-            tankIndex += 1;
-
-            SelectedTank(tankIndex);
-        }
-
-        if (controller.DPadLeft.WasPressed)
-        {
-            if (tankIndex <= 0)
-                tankIndex = squads.Count;
-
-            Destroy(currentCircle);
-
-            tankIndex -= 1;
-
-            SelectedTank(tankIndex);
-        }
-
-        if (controller.Action1.WasPressed && tankIndex >= 0)
-        {
-            squads[tankIndex].m_general.SetDestination(currentMarker.transform.position);
         }
     }
 
     void SelectedTank(int index)
     {
         currentCircle = Instantiate(circle, squads[tankIndex].m_general.transform.position, Quaternion.Euler(-90, 0, 0));
+
+        m_camera.setPosition(squads[tankIndex].m_general.transform.position.x, squads[tankIndex].m_general.transform.position.z - 10);
     }
 }

@@ -26,6 +26,7 @@ public class TankActor : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+
     }
 
     public void SetDestination(Vector3 position)
@@ -36,5 +37,10 @@ public class TankActor : MonoBehaviour {
     public void FollowLeader(TankActor commander)
     {
         m_agent.SetDestination(commander.transform.position);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        m_health -= damage;
     }
 }
