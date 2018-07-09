@@ -39,6 +39,16 @@ public class TankActor : MonoBehaviour {
         m_agent.SetDestination(commander.transform.position);
     }
 
+    public void Attack(TankActor enemy)
+    {
+        if (enemy.m_health > 0)
+        {
+            m_agent.stoppingDistance = 15.0f;
+            SetDestination(enemy.transform.position);
+            m_turret.transform.LookAt(enemy.transform.position);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         m_health -= damage;

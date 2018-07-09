@@ -1562,7 +1562,7 @@ MonoBehaviour:
   m_agent: {fileID: 0}
   m_turret: {fileID: 0}
   m_team1: 0
-  m_team2: 0
+  m_team2: 1
   m_health: 10
 --- !u!114 &114699940343270146
 MonoBehaviour:
@@ -1579,7 +1579,7 @@ MonoBehaviour:
   m_agent: {fileID: 0}
   m_turret: {fileID: 0}
   m_team1: 0
-  m_team2: 0
+  m_team2: 1
   m_health: 10
 --- !u!114 &114749272539119512
 MonoBehaviour:
@@ -1596,7 +1596,7 @@ MonoBehaviour:
   m_agent: {fileID: 0}
   m_turret: {fileID: 0}
   m_team1: 0
-  m_team2: 0
+  m_team2: 1
   m_health: 10
 --- !u!114 &114983907585372378
 MonoBehaviour:
@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_agent: {fileID: 0}
   m_turret: {fileID: 0}
   m_team1: 0
-  m_team2: 0
+  m_team2: 1
   m_health: 10
 --- !u!195 &195453197085038794
 NavMeshAgent:

@@ -1,16 +1,18 @@
-﻿using System.Collections;
+﻿using InControl;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SquadController : MonoBehaviour {
 
     public List<TankActor> m_squad;
+
     public TankActor m_general;
 
     public int numSquadMembers = 4;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         m_squad.Capacity = 4;
 
@@ -45,6 +47,7 @@ public class SquadController : MonoBehaviour {
         {
             Destroy(this);
         }
+
 	}
 
     void DestoryDeadGrunts()
