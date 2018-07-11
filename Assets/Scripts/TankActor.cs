@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class TankActor : MonoBehaviour {
 
@@ -16,7 +17,8 @@ public class TankActor : MonoBehaviour {
     public bool m_team2unit;
 
     //tanks health
-    public int m_health;
+    public float m_starthealth = 100;
+    private float m_health;
 
     //tanks attack time
     public float m_AttackTime;
@@ -24,8 +26,12 @@ public class TankActor : MonoBehaviour {
 
     public GameObject m_turret;
 
+    public Image m_healthBar;
+
     // Use this for initialization
     void Start () {
+        m_health = m_starthealth;
+
         m_agent = GetComponent<NavMeshAgent>();
 
         if (!m_isGeneral)
@@ -47,6 +53,10 @@ public class TankActor : MonoBehaviour {
     public void TakeDamage(int damageAmount)
     {
         m_health -= damageAmount;
+
+        Debug.Log(m_health);
+
+        m_healthBar.fillAmount = m_health / m_starthealth;
     }
 
     public void AttackEnemy(TankActor enemy)
@@ -63,9 +73,14 @@ public class TankActor : MonoBehaviour {
 
             if(m_AttackTimer <= 0.0f)
             {
-                enemy.TakeDamage(2);
+                enemy.TakeDamage(20);
                 m_AttackTimer = m_AttackTime;
             }
         }
+    }
+
+    public float GetHealth()
+    {
+        return m_health;
     }
 }

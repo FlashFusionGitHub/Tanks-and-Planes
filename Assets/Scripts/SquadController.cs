@@ -43,7 +43,7 @@ public class SquadController : MonoBehaviour {
                         tank.m_agent.stoppingDistance = 0.0f;
                 }
 
-                if (tank.m_health <= 0)
+                if (tank.GetHealth() <= 0)
                 {
                     if (!tank.m_isGeneral)
                     {
