@@ -1,99 +1,95 @@
-﻿using InControl;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SquadController : MonoBehaviour {
 
-    public List<TankActor> m_squad;
+    public List<TankActor> m_squad = new List<TankActor>();
 
-    public TankActor m_general;
+    public TankActor m_currentGeneral;
 
-    public int numSquadMembers = 4;
+    public TankActor m_enemy;
 
     // Use this for initialization
     void Start () {
 
-        m_squad.Capacity = 4;
+        m_squad = GetComponentsInChildren<TankActor>().ToList();
 
-        foreach (Transform child in transform)
+        SetGeneral();
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        if (m_squad.Count > 0)
         {
-            m_squad.Add(child.GetComponent<TankActor>()); 
-        }
-
-        FindGeneral();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        if (numSquadMembers > 0)
-        {
-            DestoryDeadGrunts();
-
-            foreach (TankActor tank in m_squad)
+            foreach (TankActor tank in m_squad.ToList())
             {
-                if (!tank.m_isGeneral && tank.m_health > 0)
-                {
-                    tank.m_agent.stoppingDistance = 5.0f;
+                if (!tank.m_isGeneral)
+                    tank.FollowGeneral(m_currentGeneral);
 
-                    tank.FollowLeader(m_general);
+                if (m_enemy != null)
+                {
+                    tank.AttackEnemy(m_enemy);
+                }
+
+                if (m_enemy == null)
+                {
+                    if (!tank.m_isGeneral)
+                        tank.m_agent.stoppingDistance = 5.0f;
+                    else
+                        tank.m_agent.stoppingDistance = 0.0f;
+                }
+
+                if (tank.m_health <= 0)
+                {
+                    if (!tank.m_isGeneral)
+                    {
+                        m_squad.Remove(tank);
+                        Destroy(tank.gameObject);
+                    }
+                    else if (tank.m_isGeneral)
+                    {
+                        m_squad.Remove(tank);
+                        PromoteToGeneral();
+                        SetGeneral();
+                        Destroy(tank.gameObject);
+                    }
                 }
             }
-
-            PromoteToGeneral();
         }
         else
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
+    }
 
-	}
-
-    void DestoryDeadGrunts()
+    public void setEnemy(TankActor enemy)
     {
-        foreach(TankActor tank in m_squad)
+        m_enemy = enemy;
+    }
+
+    void PromoteToGeneral()
+    {
+        foreach (TankActor tank in m_squad.ToList())
         {
-            if(!tank.m_isGeneral && tank.m_health <= 0)
+            if(!tank.m_isGeneral)
             {
-                numSquadMembers -= 1;
-
-                m_squad.Remove(tank);
-
-                Destroy(tank.gameObject);
-
+                tank.m_isGeneral = true;
                 return;
             }
         }
     }
 
-    void PromoteToGeneral()
+    void SetGeneral()
     {
-        if(m_general.m_health <= 0)
-        {
-            Destroy(m_general.gameObject);
-
-            numSquadMembers -= 1;
-
-            foreach(TankActor tank in m_squad)
-            {
-                if (!tank.m_isGeneral)
-                {
-                    tank.m_isGeneral = true;
-                    m_general = tank;
-                    return;
-                }
-            }
-        }
-    }
-
-    void FindGeneral()
-    {
-        foreach(TankActor tank in m_squad)
+        foreach(TankActor tank in m_squad.ToList())
         {
             if(tank.m_isGeneral)
             {
-                m_general = tank;
+                m_currentGeneral = tank;
             }
         }
     }

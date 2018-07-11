@@ -5,52 +5,67 @@ using UnityEngine.AI;
 
 public class TankActor : MonoBehaviour {
 
+    //Tanks NavMeshAgent
+    public NavMeshAgent m_agent;
+
+    //tanks rank
     public bool m_isGeneral;
 
-    public NavMeshAgent m_agent;
+    //Available teams
+    public bool m_team1unit;
+    public bool m_team2unit;
+
+    //tanks health
+    public int m_health;
+
+    //tanks attack time
+    public float m_AttackTime;
+    private float m_AttackTimer = 0;
 
     public GameObject m_turret;
 
-    public bool m_team1;
-
-    public bool m_team2;
-
-    public float m_health = 10;
-
     // Use this for initialization
-    void Start ()
-    {
+    void Start () {
         m_agent = GetComponent<NavMeshAgent>();
-	}
+
+        if (!m_isGeneral)
+            m_agent.stoppingDistance = 5.0f;
+        else
+            m_agent.stoppingDistance = 0.0f;
+    }
 	
 	// Update is called once per frame
-	void Update ()
-    {
+	void Update () {
 
+	}
+
+    public void FollowGeneral(TankActor general)
+    {
+        m_agent.SetDestination(general.transform.position);
     }
 
-    public void SetDestination(Vector3 position)
+    public void TakeDamage(int damageAmount)
     {
-        m_agent.SetDestination(position);
+        m_health -= damageAmount;
     }
 
-    public void FollowLeader(TankActor commander)
+    public void AttackEnemy(TankActor enemy)
     {
-        m_agent.SetDestination(commander.transform.position);
-    }
+        m_turret.transform.LookAt(enemy.transform);
 
-    public void Attack(TankActor enemy)
-    {
-        if (enemy.m_health > 0)
+        m_agent.SetDestination(enemy.transform.position);
+
+        if (Vector3.Distance(transform.position, enemy.transform.position) <= 20.0f)
         {
             m_agent.stoppingDistance = 15.0f;
-            SetDestination(enemy.transform.position);
-            m_turret.transform.LookAt(enemy.transform.position);
-        }
-    }
 
-    public void TakeDamage(int damage)
-    {
-        m_health -= damage;
+            m_AttackTimer -= Time.deltaTime;
+
+            if(m_AttackTimer <= 0.0f)
+            {
+                enemy.TakeDamage(2);
+                m_AttackTimer = m_AttackTime;
+            }
+        }
     }
 }
