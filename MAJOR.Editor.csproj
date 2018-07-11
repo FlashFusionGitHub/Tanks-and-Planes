@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0FC4E7FC-B957-A44B-B327-1FF25DA5A6EB}</ProjectGuid>
+    <ProjectGuid>{8C1C376D-806F-2049-1E8F-89589065E6C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -288,9 +288,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="TanksAndPlanes.csproj">
-      <Project>{F5865B39-25FD-77E6-E80F-3B4EB7B2BE88}</Project>
-      <Name>TanksAndPlanes</Name>
+    <ProjectReference Include="MAJOR.csproj">
+      <Project>{F25A7680-DB0D-074A-8B9B-C301BB1BF094}</Project>
+      <Name>MAJOR</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
