@@ -35,7 +35,7 @@ public class CameraControllerP2 : MonoBehaviour {
         }
         else
         {
-            this.transform.position += new Vector3(m_controller.RightStickX, 0, m_controller.RightStickY);
+            this.transform.position += new Vector3(-m_controller.RightStickX, 0, -m_controller.RightStickY);
 
             float panX = Mathf.Clamp(transform.position.x, m_MinPanX, m_MaxPanX);
             float panZ = Mathf.Clamp(transform.position.z, m_MinPanZ, m_MaxPanZ);

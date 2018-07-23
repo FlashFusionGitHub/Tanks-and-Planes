@@ -27,7 +27,7 @@ public class NavigationArrowActorP2 : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(m_controller.LeftStickX, 0, m_controller.LeftStickY) / markerSpeed;
+        transform.position += new Vector3(-m_controller.LeftStickX, 0, -m_controller.LeftStickY) / markerSpeed;
 
         float markerXPos = Mathf.Clamp(transform.position.x, m_MinXPos, m_MaxXPos);
         float markerZPos = Mathf.Clamp(transform.position.z, m_MinZPos, m_MaxZPos);
