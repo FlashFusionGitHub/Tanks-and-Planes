@@ -15,7 +15,7 @@ public class NavigationArrowActorP2 : MonoBehaviour {
 
     private void Awake()
     {
-        m_controller = InputManager.Devices[1];
+         m_controller = InputManager.Devices[1];
     }
 
     // Use this for initialization

@@ -13,11 +13,11 @@ public class CaptureZoneActor : MonoBehaviour {
     public float captureTimer = 0;
     public float captureTime = 10;
 
-    TankActor team1;
-    TankActor team2;
+    List<TankActor> team1Tanks = new List<TankActor>();
+    List<TankActor> team2Tanks = new List<TankActor>();
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
 	}
 	
@@ -29,7 +29,7 @@ public class CaptureZoneActor : MonoBehaviour {
             owner = Owner.none;
         }
 
-        if(team1 != null && team2 == null)
+        if(team1Tanks.Count > 0 && team2Tanks.Count == 0)
         {
             if (owner == Owner.none)
             {
@@ -62,7 +62,7 @@ public class CaptureZoneActor : MonoBehaviour {
             }
         }
 
-        if(team2 != null && team1 == null)
+        if (team2Tanks.Count > 0 && team1Tanks.Count == 0)
         {
             if (owner == Owner.none)
             {
@@ -100,12 +100,12 @@ public class CaptureZoneActor : MonoBehaviour {
 
         if(other.GetComponent<TankActor>().m_team1unit && other.GetComponent<TankActor>().m_isGeneral)
         {
-            team1 = other.GetComponent<TankActor>();
+            team1Tanks.Add(other.GetComponent<TankActor>());
         }
 
         if (other.GetComponent<TankActor>().m_team2unit && other.GetComponent<TankActor>().m_isGeneral)
         {
-            team2 = other.GetComponent<TankActor>();
+            team2Tanks.Add(other.GetComponent<TankActor>());
         }
     }
 
@@ -114,12 +114,12 @@ public class CaptureZoneActor : MonoBehaviour {
 
         if (other.GetComponent<TankActor>().m_team1unit && other.GetComponent<TankActor>().m_isGeneral)
         {
-            team1 = null;
+            team1Tanks.Remove(other.GetComponent<TankActor>());
         }
 
         if (other.GetComponent<TankActor>().m_team2unit && other.GetComponent<TankActor>().m_isGeneral)
         {
-            team2 = null;
+            team2Tanks.Remove(other.GetComponent<TankActor>());
         }
     }
 }

@@ -8,6 +8,8 @@ public class NavigationArrowActorP1 : MonoBehaviour {
     private InputDevice m_controller;
     private TankActor m_tank;
 
+    public Material markerMaterial;
+
     [SerializeField] private float m_MinXPos = -50.0f, m_MaxXPos = 50.0f;
     [SerializeField] private float m_MinZPos = -50.0f, m_MaxZPos = 50.0f;
 
@@ -16,7 +18,6 @@ public class NavigationArrowActorP1 : MonoBehaviour {
     private void Awake()
     {
         m_controller = InputManager.Devices[0];
- 
     }
 
     // Use this for initialization
@@ -47,6 +48,7 @@ public class NavigationArrowActorP1 : MonoBehaviour {
         if (other.gameObject.GetComponent<TankActor>().m_team2unit)
         {
             m_tank = other.GetComponent<TankActor>();
+            markerMaterial.color = Color.red;
         }
     }
 
@@ -55,6 +57,7 @@ public class NavigationArrowActorP1 : MonoBehaviour {
         if (other.gameObject.GetComponent<TankActor>().m_team2unit)
         {
             m_tank = null;
+            markerMaterial.color = Color.green;
         }
     }
 }

@@ -43,6 +43,16 @@ public class TankActor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        foreach(TankActor tank in FindObjectsOfType<TankActor>())
+        {
+            if(tank.m_team1unit)
+            {
+                if(tank.m_health >= 0)
+                {
+                    AttackEnemy(tank);
+                }
+            }
+        }
 	}
 
     public void FollowGeneral(TankActor general)

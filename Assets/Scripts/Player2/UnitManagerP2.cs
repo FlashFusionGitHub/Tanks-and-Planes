@@ -17,6 +17,7 @@ public class UnitManagerP2 : MonoBehaviour {
 
     public CameraControllerP2 m_camera;
 
+
     private void Awake()
     {
         m_controller = InputManager.Devices[1];
@@ -59,6 +60,11 @@ public class UnitManagerP2 : MonoBehaviour {
                     m_squads[m_squadIndex].m_enemy = null;
                     m_squads[m_squadIndex].m_currentGeneral.m_agent.SetDestination(m_navigationMarker.transform.position);
                 }
+            }
+
+            if (m_controller.RightStickButton.WasPressed)
+            {
+                m_camera.SetPosition(m_navigationMarker.transform.position.x, m_navigationMarker.transform.position.z + 10);
             }
 
             //if the right D pad button was pressed
@@ -105,6 +111,6 @@ public class UnitManagerP2 : MonoBehaviour {
         //the selection ring will be instantiated at the selected squad memeber, the object is then stored in the currentCircle gameobject
         m_currentSelectionCircle = Instantiate(m_selectionCircle, m_squads[index].m_currentGeneral.transform.position, Quaternion.Euler(-90, 0, 0));
         //to make finding the selected unit easier, set the cameras position so it looks at the selected unit
-        m_camera.setPosition(m_squads[index].m_currentGeneral.transform.position.x, m_squads[index].m_currentGeneral.transform.position.z - 10);
+        m_camera.SetPosition(m_squads[index].m_currentGeneral.transform.position.x, m_squads[index].m_currentGeneral.transform.position.z - 10);
     }
 }
