@@ -43,17 +43,52 @@ public class TankActor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        foreach(TankActor tank in FindObjectsOfType<TankActor>())
+        if(m_team1unit)
         {
-            if(tank.m_team1unit)
+            foreach (TankActor tank in FindObjectsOfType<TankActor>())
             {
-                if(tank.m_health >= 0)
+                if (tank.m_team2unit)
                 {
-                    AttackEnemy(tank);
+                    if (Vector3.Distance(transform.position, tank.transform.position) <= 20)
+                    {
+                        if (tank.m_health >= 0)
+                        {
+                            m_AttackTimer -= Time.deltaTime;
+
+                            if (m_AttackTimer <= 0.0f)
+                            {
+                                tank.TakeDamage(20);
+                                m_AttackTimer = m_AttackTime;
+                            }
+                        }
+                    }
                 }
             }
         }
-	}
+
+        if (m_team2unit)
+        {
+            foreach (TankActor tank in FindObjectsOfType<TankActor>())
+            {
+                if (tank.m_team1unit)
+                {
+                    if (Vector3.Distance(transform.position, tank.transform.position) <= 20)
+                    {
+                        if (tank.m_health >= 0)
+                        {
+                            m_AttackTimer -= Time.deltaTime;
+
+                            if (m_AttackTimer <= 0.0f)
+                            {
+                                tank.TakeDamage(20);
+                                m_AttackTimer = m_AttackTime;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     public void FollowGeneral(TankActor general)
     {
