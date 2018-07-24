@@ -48,6 +48,17 @@ public class UnitManagerP1 : MonoBehaviour {
 
                     m_squads.Remove(squad);
                 }
+
+                foreach (TankActor tank in FindObjectsOfType<TankActor>())
+                {
+                    if (!squad.isPlayer1Controlling)
+                    {
+                        if (tank.m_team2unit && Vector3.Distance(tank.transform.position, squad.m_currentGeneral.transform.position) <= 20)
+                        {
+                            squad.setEnemy(tank);
+                        }
+                    }
+                }
             }
 
             if(m_squads[m_squadIndex].m_currentGeneral != null && allGroundUnitsSelected == false)
@@ -102,15 +113,19 @@ public class UnitManagerP1 : MonoBehaviour {
 
                 selectionCircles.Clear();
 
+                m_squads[m_squadIndex].isPlayer1Controlling = false;
+
                 //check if the index not greater than the amount of squads in the list
                 if (m_squadIndex == m_squads.Count - 1)
                 {
                     //set the tank index so the first element will have a selection ring
                     m_squadIndex = -1;
                 }
+
                 //destory the currect circle
                 if (m_currentSelectionCircle != null)
                     Destroy(m_currentSelectionCircle);
+
                 //increment the tank index
                 m_squadIndex += 1;
                 //and access the selectedTank method, pasing in the tank index
@@ -128,6 +143,8 @@ public class UnitManagerP1 : MonoBehaviour {
 
                 selectionCircles.Clear();
 
+                m_squads[m_squadIndex].isPlayer1Controlling = false;
+
                 //if the tank index is less than or equal to zero
                 if (m_squadIndex == 0)
                 {
@@ -136,7 +153,7 @@ public class UnitManagerP1 : MonoBehaviour {
                 }
 
                 //destory the currect circle
-                if(m_currentSelectionCircle != null)
+                if (m_currentSelectionCircle != null)
                     Destroy(m_currentSelectionCircle);
 
                 //decrement the tank index
@@ -169,7 +186,9 @@ public class UnitManagerP1 : MonoBehaviour {
 
     void SelectedTank(int index)
     {
-        foreach(TankActor tank in m_squads[index].m_squad)
+        m_squads[index].isPlayer1Controlling = true;
+
+        foreach (TankActor tank in m_squads[index].m_squad)
         {
             tank.GetComponent<ShrinkAndGrow>().SetGrowState(true);
         }

@@ -398,6 +398,8 @@
     <Compile Include="Assets\InControl\Source\XInput\XInputDotNetPure\GamePad.cs" />
     <Compile Include="Assets\InControl\Source\XInput\XInputDotNetPure\Utils.cs" />
     <Compile Include="Assets\InControl\Test\TestInputManager.cs" />
+    <Compile Include="Assets\killAfterTime.cs" />
+    <Compile Include="Assets\Scripts\CaptureZoneActor.cs" />
     <Compile Include="Assets\Scripts\Player1\CameraControllerP1.cs" />
     <Compile Include="Assets\Scripts\Player1\NavigationArrowActorP1.cs" />
     <Compile Include="Assets\Scripts\Player1\UnitManagerP1.cs" />
@@ -406,6 +408,9 @@
     <Compile Include="Assets\Scripts\Player2\UnitManagerP2.cs" />
     <Compile Include="Assets\Scripts\SquadController.cs" />
     <Compile Include="Assets\Scripts\TankActor.cs" />
+    <Compile Include="Assets\Scripts\UX Scripts\CamSmoothMove.cs" />
+    <Compile Include="Assets\Scripts\UX Scripts\ShrinkAndGrow.cs" />
+    <Compile Include="Assets\Scripts\ZoneController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\InControl\README\README.txt" />
