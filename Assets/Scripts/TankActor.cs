@@ -43,6 +43,14 @@ public class TankActor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(m_agent.velocity.x > 0.0f || m_agent.velocity.y > 0.0f || m_agent.velocity.z > 0.0f)
+        {
+            GetComponent<ParticleSystem>().Play();
+        }
+        else
+        {
+            GetComponent<ParticleSystem>().Stop();
+        }
     }
 
     public void FollowGeneral(TankActor general)
