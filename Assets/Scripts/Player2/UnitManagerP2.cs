@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UnitManagerP2 : MonoBehaviour {
+public class UnitManagerP2 : MonoBehaviour
+{
 
-    private InputDevice m_controller;
+    private InputDevice m_controller2;
     private GameObject m_currentSelectionCircle;
     private int m_squadIndex = 0;
 
@@ -27,19 +28,20 @@ public class UnitManagerP2 : MonoBehaviour {
 
     private void Awake()
     {
-        m_controller = InputManager.Devices[1];
+        m_controller2 = InputManager.Devices[1];
     }
 
     // Use this for initialization
-    void Start () {
-
+    void Start()
+    {
         m_squads = GetComponentsInChildren<SquadController>().ToList();
 
         SelectedTank(m_squadIndex);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (m_squads.Count > 0)
         {
             foreach (SquadController squad in m_squads.ToList())
@@ -54,7 +56,7 @@ public class UnitManagerP2 : MonoBehaviour {
 
                 foreach (TankActor tank in FindObjectsOfType<TankActor>())
                 {
-                    if(!squad.isPlayer2Controlling)
+                    if (!squad.isPlayer2Controlling)
                     {
                         if (tank.m_team1unit && Vector3.Distance(tank.transform.position, squad.m_currentGeneral.transform.position) <= 20)
                         {
@@ -64,10 +66,10 @@ public class UnitManagerP2 : MonoBehaviour {
                 }
             }
 
-            if (m_squads[m_squadIndex].m_currentGeneral != null)
+            if (m_squads[m_squadIndex].m_currentGeneral != null && allGroundUnitsSelected == false)
                 m_currentSelectionCircle.transform.position = m_squads[m_squadIndex].m_currentGeneral.transform.position;
 
-            if (m_controller.Action1.WasPressed)
+            if (m_controller2.Action1.WasPressed)
             {
                 if (allGroundUnitsSelected != true)
                 {
@@ -98,17 +100,14 @@ public class UnitManagerP2 : MonoBehaviour {
                 }
             }
 
-            if (m_controller.RightStickButton.WasPressed)
+            if (m_controller2.RightStickButton.WasPressed)
             {
-                if (m_controller.RightStickButton.WasPressed)
-                {
-                    m_camera.changePosition = true;
-                    m_camera.MoveCameraTo(m_navigationMarker.transform.position.x, m_navigationMarker.transform.position.z - 10);
-                }
+                m_camera.changePosition = true;
+                m_camera.MoveCameraTo(m_navigationMarker.transform.position.x, m_navigationMarker.transform.position.z + 10);
             }
 
             //if the right D pad button was pressed
-            if (m_controller.DPadRight.WasPressed)
+            if (m_controller2.DPadRight.WasPressed)
             {
                 allGroundUnitsSelected = false;
 
@@ -119,7 +118,6 @@ public class UnitManagerP2 : MonoBehaviour {
 
                 selectionCircles.Clear();
 
-                //set isplayercontrlling to false
                 m_squads[m_squadIndex].isPlayer2Controlling = false;
 
                 //check if the index not greater than the amount of squads in the list
@@ -128,16 +126,18 @@ public class UnitManagerP2 : MonoBehaviour {
                     //set the tank index so the first element will have a selection ring
                     m_squadIndex = -1;
                 }
+
                 //destory the currect circle
-                Destroy(m_currentSelectionCircle);
+                if (m_currentSelectionCircle != null)
+                    Destroy(m_currentSelectionCircle);
+
                 //increment the tank index
                 m_squadIndex += 1;
-
                 //and access the selectedTank method, pasing in the tank index
                 SelectedTank(m_squadIndex);
             }
 
-            if (m_controller.DPadLeft.WasPressed)
+            if (m_controller2.DPadLeft.WasPressed)
             {
                 allGroundUnitsSelected = false;
 
@@ -148,7 +148,6 @@ public class UnitManagerP2 : MonoBehaviour {
 
                 selectionCircles.Clear();
 
-                //set isplayercontrlling to false
                 m_squads[m_squadIndex].isPlayer2Controlling = false;
 
                 //if the tank index is less than or equal to zero
@@ -157,8 +156,11 @@ public class UnitManagerP2 : MonoBehaviour {
                     //set the tank index to the current squad size
                     m_squadIndex = m_squads.Count;
                 }
+
                 //destory the currect circle
-                Destroy(m_currentSelectionCircle);
+                if (m_currentSelectionCircle != null)
+                    Destroy(m_currentSelectionCircle);
+
                 //decrement the tank index
                 m_squadIndex -= 1;
                 //and access the selectedTank method, pasing in the tank index
@@ -176,7 +178,7 @@ public class UnitManagerP2 : MonoBehaviour {
                 index = 0;
             }
 
-            if (m_controller.Action4.WasPressed && !allGroundUnitsSelected)
+            if (m_controller2.Action4.WasPressed && !allGroundUnitsSelected)
             {
                 SelectAllTanks();
             }
@@ -189,7 +191,7 @@ public class UnitManagerP2 : MonoBehaviour {
 
     void SelectedTank(int index)
     {
-        m_squads[index].isPlayer2Controlling = true;
+        m_squads[index].isPlayer1Controlling = true;
 
         foreach (TankActor tank in m_squads[index].m_squad)
         {
@@ -200,7 +202,7 @@ public class UnitManagerP2 : MonoBehaviour {
 
         m_camera.changePosition = true;
 
-        m_camera.MoveCameraTo(m_squads[index].m_currentGeneral.transform.position.x, m_squads[index].m_currentGeneral.transform.position.z - 10);
+        m_camera.MoveCameraTo(m_squads[index].m_currentGeneral.transform.position.x, m_squads[index].m_currentGeneral.transform.position.z + 10);
     }
 
     void SelectAllTanks()

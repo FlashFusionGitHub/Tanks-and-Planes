@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 65313673041756576}
   - component: {fileID: 54721876638429468}
   - component: {fileID: 114111113544542760}
+  - component: {fileID: 114323930854369774}
   m_Layer: 0
   m_Name: Team2Tank (1)
   m_TagString: Untagged
@@ -107,6 +108,7 @@ GameObject:
   - component: {fileID: 65028183840089040}
   - component: {fileID: 54618277856536008}
   - component: {fileID: 114214901780293238}
+  - component: {fileID: 114588539584182872}
   m_Layer: 0
   m_Name: Team2Tank (3)
   m_TagString: Untagged
@@ -173,6 +175,7 @@ GameObject:
   - component: {fileID: 65757836809976294}
   - component: {fileID: 54162381456470506}
   - component: {fileID: 114982343069029774}
+  - component: {fileID: 114877671902529168}
   m_Layer: 0
   m_Name: Team2Tank
   m_TagString: Untagged
@@ -460,6 +463,7 @@ GameObject:
   - component: {fileID: 65128610559657838}
   - component: {fileID: 54265954682182054}
   - component: {fileID: 114007013967261878}
+  - component: {fileID: 114472684128242880}
   m_Layer: 0
   m_Name: Team2Tank (2)
   m_TagString: Untagged
@@ -2078,6 +2082,29 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114323930854369774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1044319589627434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302fc994e8bb0fc4ea93f9a35188e333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_growing: 1
+  m_maxSize: {x: 0.015, y: 0.015, z: 0.015}
+  m_growSpeed: 10
+  m_reseting: 0
+  m_normalSize: {x: 0.01, y: 0.01, z: 0.01}
+  m_resetSpeed: 10
+  m_shrinking: 0
+  m_smallSize: {x: 0.005, y: 0.005, z: 0.005}
+  m_shrinkSpeed: 10
+  m_shrinkingBuffer: 0.99
+  m_growingBuffer: 1.01
+  m_resetingBuffer: 0.99
 --- !u!114 &114325397786261730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2164,6 +2191,29 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114472684128242880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1684972421222500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302fc994e8bb0fc4ea93f9a35188e333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_growing: 1
+  m_maxSize: {x: 0.015, y: 0.015, z: 0.015}
+  m_growSpeed: 10
+  m_reseting: 0
+  m_normalSize: {x: 0.01, y: 0.01, z: 0.01}
+  m_resetSpeed: 10
+  m_shrinking: 0
+  m_smallSize: {x: 0.005, y: 0.005, z: 0.005}
+  m_shrinkSpeed: 10
+  m_shrinkingBuffer: 0.99
+  m_growingBuffer: 1.01
+  m_resetingBuffer: 0.99
 --- !u!114 &114553410688677776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2185,6 +2235,29 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114588539584182872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1074834744148500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302fc994e8bb0fc4ea93f9a35188e333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_growing: 1
+  m_maxSize: {x: 0.015, y: 0.015, z: 0.015}
+  m_growSpeed: 10
+  m_reseting: 0
+  m_normalSize: {x: 0.01, y: 0.01, z: 0.01}
+  m_resetSpeed: 10
+  m_shrinking: 0
+  m_smallSize: {x: 0.005, y: 0.005, z: 0.005}
+  m_shrinkSpeed: 10
+  m_shrinkingBuffer: 0.99
+  m_growingBuffer: 1.01
+  m_resetingBuffer: 0.99
 --- !u!114 &114608390036329194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2292,6 +2365,29 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114877671902529168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243224697317792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302fc994e8bb0fc4ea93f9a35188e333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_growing: 1
+  m_maxSize: {x: 0.015, y: 0.015, z: 0.015}
+  m_growSpeed: 10
+  m_reseting: 0
+  m_normalSize: {x: 0.01, y: 0.01, z: 0.01}
+  m_resetSpeed: 10
+  m_shrinking: 0
+  m_smallSize: {x: 0.005, y: 0.005, z: 0.005}
+  m_shrinkSpeed: 10
+  m_shrinkingBuffer: 0.99
+  m_growingBuffer: 1.01
+  m_resetingBuffer: 0.99
 --- !u!114 &114881577342158792
 MonoBehaviour:
   m_ObjectHideFlags: 1

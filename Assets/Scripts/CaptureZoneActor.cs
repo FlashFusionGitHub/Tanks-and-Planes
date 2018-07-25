@@ -32,7 +32,15 @@ public class CaptureZoneActor : MonoBehaviour {
             }
         }
 
-        if(capturePercentage == 0)
+        foreach (TankActor tank in team2Tanks)
+        {
+            if (tank == null)
+            {
+                team2Tanks.Remove(tank);
+            }
+        }
+
+        if (capturePercentage == 0)
         {
             owner = Owner.none;
         }

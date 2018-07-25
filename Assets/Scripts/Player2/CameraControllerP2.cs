@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraControllerP2 : MonoBehaviour {
 
-    private InputDevice m_controller;
+    private InputDevice m_controller2;
 
     public float m_MinZoom = 10.0f, m_MaxZoom = 50.0f;
     public float m_MinPanX = -50.0f, m_MaxPanX = 50.0f;
@@ -19,7 +19,7 @@ public class CameraControllerP2 : MonoBehaviour {
 
     private void Awake()
     {
-        m_controller = InputManager.Devices[1];
+        m_controller2 = InputManager.Devices[1];
     }
 
     // Use this for initialization
@@ -31,9 +31,9 @@ public class CameraControllerP2 : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (m_controller.RightTrigger.IsPressed)
+        if (m_controller2.RightBumper.IsPressed)
         {
-            transform.position += new Vector3(0, -m_controller.RightStickY, 0);
+            transform.position += new Vector3(0, -m_controller2.RightStickY, 0);
 
             float zoom = Mathf.Clamp(transform.position.y, m_MinZoom, m_MaxZoom);
 
@@ -41,7 +41,7 @@ public class CameraControllerP2 : MonoBehaviour {
         }
         else
         {
-            this.transform.position += new Vector3(-m_controller.RightStickX, 0, -m_controller.RightStickY);
+            this.transform.position += new Vector3(-m_controller2.RightStickX, 0, -m_controller2.RightStickY);
 
             float panX = Mathf.Clamp(transform.position.x, m_MinPanX, m_MaxPanX);
             float panZ = Mathf.Clamp(transform.position.z, m_MinPanZ, m_MaxPanZ);
