@@ -11,6 +11,12 @@ public class CameraControllerP2 : MonoBehaviour {
     public float m_MinPanX = -50.0f, m_MaxPanX = 50.0f;
     public float m_MinPanZ = -50.0f, m_MaxPanZ = 50.0f;
 
+    public float slerpSpeed = 50;
+
+    Vector3 position;
+
+    public bool changePosition;
+
     private void Awake()
     {
         m_controller = InputManager.Devices[1];
@@ -42,10 +48,20 @@ public class CameraControllerP2 : MonoBehaviour {
 
             transform.position = new Vector3(panX, transform.position.y, panZ);
         }
+
+        if (changePosition)
+        {
+            transform.position = Vector3.Slerp(transform.position, position, slerpSpeed);
+
+            if (Vector3.Distance(transform.position, position) <= 1)
+            {
+                changePosition = false;
+            }
+        }
     }
 
-    public void SetPosition(float x, float z)
+    public void MoveCameraTo(float x, float z)
     {
-        transform.position = new Vector3(x, transform.position.y, z);
+        position = new Vector3(x, transform.position.y, z);
     }
 }

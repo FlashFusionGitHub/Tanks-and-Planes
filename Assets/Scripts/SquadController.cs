@@ -12,6 +12,9 @@ public class SquadController : MonoBehaviour {
 
     public TankActor m_enemy;
 
+    public bool isPlayer2Controlling = false;
+    public bool isPlayer1Controlling = false;
+
     // Use this for initialization
     void Start () {
 
