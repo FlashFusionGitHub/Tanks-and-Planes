@@ -418,7 +418,9 @@
     <Compile Include="Assets\Scripts\SquadController.cs" />
     <Compile Include="Assets\Scripts\TankActor.cs" />
     <Compile Include="Assets\Scripts\UX Scripts\CamSmoothMove.cs" />
+    <Compile Include="Assets\Scripts\UX Scripts\ChangeColor.cs" />
     <Compile Include="Assets\Scripts\UX Scripts\ShrinkAndGrow.cs" />
+    <Compile Include="Assets\Scripts\UX Scripts\ZoneColorChanger.cs" />
     <Compile Include="Assets\Scripts\ZoneController.cs" />
   </ItemGroup>
   <ItemGroup>

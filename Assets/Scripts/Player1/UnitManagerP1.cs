@@ -26,7 +26,7 @@ public class UnitManagerP1 : MonoBehaviour {
     public GameObject spawnLocation;
 
     public float spawnTimer;
-    public float spawnTime = 5;
+    public float spawnTime = 10;
 
     private void Awake()
     {
@@ -45,9 +45,10 @@ public class UnitManagerP1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-        if(m_squads.Count > 0)
+        if (m_squads.Count > 0)
         {
+            spawnTimer -= Time.deltaTime;
+
             foreach (SquadController squad in m_squads.ToList())
             {
                 if (squad == null)
@@ -69,16 +70,11 @@ public class UnitManagerP1 : MonoBehaviour {
                     }
                 }
 
-                spawnTimer -= Time.deltaTime;
-
                 if(spawnTimer <= 0)
                 {
-                    //spawn a tank
-                    //GameObject newTank = Instantiate(tank, spawnLocation.transform.position, Quaternion.identity);
-
+                    GameObject Tank = Instantiate(tank, spawnLocation.transform.position, Quaternion.identity);
+                    squad.m_squad.Add(Tank.GetComponent<TankActor>());
                     spawnTimer = spawnTime;
-
-                    //squad.m_squad.Add(newTank.GetComponent<TankActor>());
                 }
             }
 
