@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+using UnityEngine.EventSystems;
+
 public class SquadController : MonoBehaviour {
 
     public List<TankActor> m_squad = new List<TankActor>();
@@ -14,6 +16,9 @@ public class SquadController : MonoBehaviour {
 
     public bool isPlayer2Controlling = false;
     public bool isPlayer1Controlling = false;
+
+    public GameObject promotionEvent;
+    public GameObject deathEvent;
 
     // Use this for initialization
     void Start () {
@@ -48,6 +53,7 @@ public class SquadController : MonoBehaviour {
 
                 if (tank.GetHealth() <= 0)
                 {
+                    Instantiate(deathEvent, tank.transform.position, Quaternion.identity);
                     if (!tank.m_isGeneral)
                     {
                         m_squad.Remove(tank);
@@ -80,6 +86,7 @@ public class SquadController : MonoBehaviour {
         {
             if(!tank.m_isGeneral)
             {
+                Instantiate(promotionEvent, tank.transform.position, Quaternion.identity);
                 tank.m_isGeneral = true;
                 return;
             }

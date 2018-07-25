@@ -13,8 +13,8 @@ public class CaptureZoneActor : MonoBehaviour {
     public float captureTimer = 0;
     public float captureTime = 10;
 
-    List<TankActor> team1Tanks = new List<TankActor>();
-    List<TankActor> team2Tanks = new List<TankActor>();
+    public List<TankActor> team1Tanks = new List<TankActor>();
+    public List<TankActor> team2Tanks = new List<TankActor>();
 
     // Use this for initialization
     void Start () {
@@ -23,6 +23,14 @@ public class CaptureZoneActor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        foreach(TankActor tank in team1Tanks)
+        {
+            if(tank == null)
+            {
+                team1Tanks.Remove(tank);
+            }
+        }
 
         if(capturePercentage == 0)
         {
@@ -98,12 +106,12 @@ public class CaptureZoneActor : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
 
-        if(other.GetComponent<TankActor>().m_team1unit && other.GetComponent<TankActor>().m_isGeneral)
+        if(other.GetComponent<TankActor>().m_team1unit)
         {
             team1Tanks.Add(other.GetComponent<TankActor>());
         }
 
-        if (other.GetComponent<TankActor>().m_team2unit && other.GetComponent<TankActor>().m_isGeneral)
+        if (other.GetComponent<TankActor>().m_team2unit)
         {
             team2Tanks.Add(other.GetComponent<TankActor>());
         }
@@ -112,12 +120,12 @@ public class CaptureZoneActor : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
 
-        if (other.GetComponent<TankActor>().m_team1unit && other.GetComponent<TankActor>().m_isGeneral)
+        if (other.GetComponent<TankActor>().m_team1unit)
         {
             team1Tanks.Remove(other.GetComponent<TankActor>());
         }
 
-        if (other.GetComponent<TankActor>().m_team2unit && other.GetComponent<TankActor>().m_isGeneral)
+        if (other.GetComponent<TankActor>().m_team2unit)
         {
             team2Tanks.Remove(other.GetComponent<TankActor>());
         }

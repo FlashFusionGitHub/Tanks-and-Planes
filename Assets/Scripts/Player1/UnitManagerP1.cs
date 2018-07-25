@@ -21,6 +21,13 @@ public class UnitManagerP1 : MonoBehaviour {
 
     List<GameObject> selectionCircles = new List<GameObject>();
 
+    public GameObject tank;
+
+    public GameObject spawnLocation;
+
+    public float spawnTimer;
+    public float spawnTime = 5;
+
     private void Awake()
     {
         m_controller = InputManager.Devices[0];
@@ -32,6 +39,8 @@ public class UnitManagerP1 : MonoBehaviour {
         m_squads = GetComponentsInChildren<SquadController>().ToList();
 
         SelectedTank(m_squadIndex);
+
+        spawnTimer = spawnTime;
     }
 	
 	// Update is called once per frame
@@ -58,6 +67,18 @@ public class UnitManagerP1 : MonoBehaviour {
                             squad.setEnemy(tank);
                         }
                     }
+                }
+
+                spawnTimer -= Time.deltaTime;
+
+                if(spawnTimer <= 0)
+                {
+                    //spawn a tank
+                    //GameObject newTank = Instantiate(tank, spawnLocation.transform.position, Quaternion.identity);
+
+                    spawnTimer = spawnTime;
+
+                    //squad.m_squad.Add(newTank.GetComponent<TankActor>());
                 }
             }
 

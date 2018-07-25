@@ -21,6 +21,10 @@ public class UnitManagerP2 : MonoBehaviour {
 
     List<GameObject> selectionCircles = new List<GameObject>();
 
+    public GameObject tank;
+
+    public GameObject spawnLocation;
+
     private void Awake()
     {
         m_controller = InputManager.Devices[1];

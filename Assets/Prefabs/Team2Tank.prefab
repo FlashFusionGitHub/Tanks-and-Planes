@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 65855188728353414}
   - component: {fileID: 54341004071456878}
   - component: {fileID: 114770956238176286}
+  - component: {fileID: 114077228963363802}
   m_Layer: 0
   m_Name: Team2Tank
   m_TagString: Untagged
@@ -228,7 +229,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1952047908304054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4971869, y: 3.942643e-17, z: -17.756084}
+  m_LocalPosition: {x: -18.38308, y: 4.5463253e-17, z: -20.47483}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4412985161723808}
@@ -496,6 +497,29 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114077228963363802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1952047908304054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302fc994e8bb0fc4ea93f9a35188e333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_growing: 1
+  m_maxSize: {x: 0.015, y: 0.015, z: 0.015}
+  m_growSpeed: 10
+  m_reseting: 0
+  m_normalSize: {x: 0.01, y: 0.01, z: 0.01}
+  m_resetSpeed: 10
+  m_shrinking: 0
+  m_smallSize: {x: 0.005, y: 0.005, z: 0.005}
+  m_shrinkSpeed: 10
+  m_shrinkingBuffer: 0.99
+  m_growingBuffer: 1.01
+  m_resetingBuffer: 0.99
 --- !u!114 &114204589473155300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -555,6 +579,7 @@ MonoBehaviour:
   m_team1unit: 0
   m_team2unit: 1
   m_starthealth: 100
+  m_health: 0
   m_AttackTime: 3
   m_turret: {fileID: 1202796844940174}
   m_healthBar: {fileID: 114034746610185236}

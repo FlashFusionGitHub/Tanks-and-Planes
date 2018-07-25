@@ -1892,6 +1892,7 @@ MonoBehaviour:
   m_team1unit: 0
   m_team2unit: 1
   m_starthealth: 100
+  m_health: 0
   m_AttackTime: 3
   m_turret: {fileID: 1518165281462498}
   m_healthBar: {fileID: 114414297353145212}
@@ -1930,6 +1931,11 @@ MonoBehaviour:
   m_squad: []
   m_currentGeneral: {fileID: 0}
   m_enemy: {fileID: 0}
+  isPlayer2Controlling: 0
+  isPlayer1Controlling: 0
+  promotionEvent: {fileID: 1481620279185138, guid: f9aaf133bc752334db2c5403b2c76451,
+    type: 2}
+  deathEvent: {fileID: 1834409643084570, guid: f776538b13c4a3d458e85caf99a8c118, type: 2}
 --- !u!114 &114111113544542760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1946,6 +1952,7 @@ MonoBehaviour:
   m_team1unit: 0
   m_team2unit: 1
   m_starthealth: 100
+  m_health: 0
   m_AttackTime: 3
   m_turret: {fileID: 1974029363227500}
   m_healthBar: {fileID: 114156250302744542}
@@ -2019,6 +2026,7 @@ MonoBehaviour:
   m_team1unit: 0
   m_team2unit: 1
   m_starthealth: 100
+  m_health: 0
   m_AttackTime: 3
   m_turret: {fileID: 1131678212502374}
   m_healthBar: {fileID: 114643807600931096}
@@ -2327,6 +2335,7 @@ MonoBehaviour:
   m_team1unit: 0
   m_team2unit: 1
   m_starthealth: 100
+  m_health: 0
   m_AttackTime: 3
   m_turret: {fileID: 1642170164546902}
   m_healthBar: {fileID: 114608390036329194}

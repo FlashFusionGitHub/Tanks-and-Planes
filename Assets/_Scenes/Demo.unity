@@ -302,6 +302,8 @@ MonoBehaviour:
   m_MaxPanX: 50
   m_MinPanZ: -50
   m_MaxPanZ: 50
+  slerpSpeed: 50
+  changePosition: 0
 --- !u!124 &264599575
 Behaviour:
   m_ObjectHideFlags: 0
@@ -500,6 +502,8 @@ MonoBehaviour:
     type: 2}
   m_navigationMarker: {fileID: 1420297705}
   m_camera: {fileID: 264599574}
+  tank: {fileID: 0}
+  spawnLocation: {fileID: 0}
 --- !u!4 &544607003 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4840223350431824, guid: 3c2bd458968ea5647bd0ed06d381e3d4,
@@ -552,66 +556,6 @@ Prefab:
     - target: {fileID: 1081959927075916, guid: 67fd5731e9cd63c4da8e84acda9a15a3, type: 2}
       propertyPath: m_Name
       value: Team1Squad (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114699854720858368, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114463477852717146, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114190677052225788, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114622136162428330, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114699854720858368, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_growing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114463477852717146, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_growing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114190677052225788, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_growing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114622136162428330, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_growing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114699854720858368, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_shrinking
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114463477852717146, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_shrinking
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114190677052225788, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_shrinking
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114622136162428330, guid: 67fd5731e9cd63c4da8e84acda9a15a3,
-        type: 2}
-      propertyPath: m_shrinking
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67fd5731e9cd63c4da8e84acda9a15a3, type: 2}
@@ -859,6 +803,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c2bd458968ea5647bd0ed06d381e3d4, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1182126383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1182126384}
+  m_Layer: 0
+  m_Name: SpawnPoint - Team2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1182126384
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1182126383}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 40, y: 0, z: 40}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1227715927 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114092637094427760, guid: 3c2bd458968ea5647bd0ed06d381e3d4,
@@ -895,9 +867,9 @@ MonoBehaviour:
   zones: []
   progressBar: {fileID: 2078045149}
   progressTimer: 0
-  progressTime: 10
-  m_startPercentage: 100
-  amount: 0
+  progressTime: 1
+  m_startPercentage: 1000
+  amount: 1
 --- !u!4 &1306584247
 Transform:
   m_ObjectHideFlags: 0
@@ -1092,6 +1064,10 @@ MonoBehaviour:
     type: 2}
   m_navigationMarker: {fileID: 11913862}
   m_camera: {fileID: 1992603240}
+  tank: {fileID: 1269639721404880, guid: bb7b6a10123c0ac448c789d1ca825355, type: 2}
+  spawnLocation: {fileID: 1867428174}
+  spawnTimer: 0
+  spawnTime: 10
 --- !u!4 &1560932349
 Transform:
   m_ObjectHideFlags: 0
@@ -1251,6 +1227,8 @@ MonoBehaviour:
   owner: 0
   captureTimer: 0
   captureTime: 10
+  team1Tanks: []
+  team2Tanks: []
 --- !u!135 &1725922465
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1511,6 +1489,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aec3cef2054eb344fb962b04374caeb0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1867428174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1867428175}
+  m_Layer: 0
+  m_Name: SpawnPoint - Team1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1867428175
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1867428174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40, y: 0, z: -40}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1870502586 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4840223350431824, guid: 3c2bd458968ea5647bd0ed06d381e3d4,

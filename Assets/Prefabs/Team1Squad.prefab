@@ -1923,6 +1923,7 @@ MonoBehaviour:
   m_team1unit: 1
   m_team2unit: 0
   m_starthealth: 100
+  m_health: 0
   m_AttackTime: 3
   m_turret: {fileID: 1312261775955918}
   m_healthBar: {fileID: 114122410343702102}
@@ -1992,6 +1993,7 @@ MonoBehaviour:
   m_team1unit: 1
   m_team2unit: 0
   m_starthealth: 100
+  m_health: 0
   m_AttackTime: 3
   m_turret: {fileID: 1208032651372230}
   m_healthBar: {fileID: 114544355235905366}
@@ -2032,6 +2034,7 @@ MonoBehaviour:
   m_team1unit: 1
   m_team2unit: 0
   m_starthealth: 100
+  m_health: 0
   m_AttackTime: 3
   m_turret: {fileID: 1625060503068502}
   m_healthBar: {fileID: 114991523843672314}
@@ -2092,6 +2095,11 @@ MonoBehaviour:
   m_squad: []
   m_currentGeneral: {fileID: 0}
   m_enemy: {fileID: 0}
+  isPlayer2Controlling: 0
+  isPlayer1Controlling: 0
+  promotionEvent: {fileID: 1481620279185138, guid: f9aaf133bc752334db2c5403b2c76451,
+    type: 2}
+  deathEvent: {fileID: 1834409643084570, guid: f776538b13c4a3d458e85caf99a8c118, type: 2}
 --- !u!114 &114463477852717146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2256,7 +2264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302fc994e8bb0fc4ea93f9a35188e333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_growing: 0
+  m_growing: 1
   m_maxSize: {x: 0.015, y: 0.015, z: 0.015}
   m_growSpeed: 10
   m_reseting: 0
@@ -2305,6 +2313,7 @@ MonoBehaviour:
   m_team1unit: 1
   m_team2unit: 0
   m_starthealth: 100
+  m_health: 0
   m_AttackTime: 3
   m_turret: {fileID: 1572807111313638}
   m_healthBar: {fileID: 114558494639111716}

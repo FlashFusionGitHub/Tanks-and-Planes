@@ -18,7 +18,7 @@ public class TankActor : MonoBehaviour {
 
     //tanks health
     public float m_starthealth = 100;
-    private float m_health;
+    public float m_health;
 
     //tanks attack time
     public float m_AttackTime;
@@ -42,7 +42,7 @@ public class TankActor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-  
+
     }
 
     public void FollowGeneral(TankActor general)
