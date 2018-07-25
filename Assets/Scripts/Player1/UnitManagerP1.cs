@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UnitManagerP1 : MonoBehaviour {
+public class UnitManagerP1 : MonoBehaviour
+{
 
-    private InputDevice m_controller;
+    private InputDevice m_controller1;
     private GameObject m_currentSelectionCircle;
     private int m_squadIndex = 0;
 
@@ -25,12 +26,9 @@ public class UnitManagerP1 : MonoBehaviour {
 
     public GameObject spawnLocation;
 
-    public float spawnTimer;
-    public float spawnTime = 10;
-
     private void Awake()
     {
-        m_controller = InputManager.Devices[0];
+        m_controller1 = InputManager.Devices[0];
     }
 
     // Use this for initialization
@@ -39,16 +37,12 @@ public class UnitManagerP1 : MonoBehaviour {
         m_squads = GetComponentsInChildren<SquadController>().ToList();
 
         SelectedTank(m_squadIndex);
-
-        spawnTimer = spawnTime;
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (m_squads.Count > 0)
         {
-            spawnTimer -= Time.deltaTime;
-
             foreach (SquadController squad in m_squads.ToList())
             {
                 if (squad == null)
@@ -69,21 +63,14 @@ public class UnitManagerP1 : MonoBehaviour {
                         }
                     }
                 }
-
-                if(spawnTimer <= 0)
-                {
-                    GameObject Tank = Instantiate(tank, spawnLocation.transform.position, Quaternion.identity);
-                    squad.m_squad.Add(Tank.GetComponent<TankActor>());
-                    spawnTimer = spawnTime;
-                }
             }
 
-            if(m_squads[m_squadIndex].m_currentGeneral != null && allGroundUnitsSelected == false)
+            if (m_squads[m_squadIndex].m_currentGeneral != null && allGroundUnitsSelected == false)
                 m_currentSelectionCircle.transform.position = m_squads[m_squadIndex].m_currentGeneral.transform.position;
 
-            if (m_controller.Action1.WasPressed)
+            if (m_controller1.Action1.WasPressed)
             {
-                if(allGroundUnitsSelected != true)
+                if (allGroundUnitsSelected != true)
                 {
                     if (m_navigationMarker.GetEnemyToAttack() != null)
                     {
@@ -97,9 +84,9 @@ public class UnitManagerP1 : MonoBehaviour {
                 }
                 else
                 {
-                    foreach(SquadController squad in m_squads)
+                    foreach (SquadController squad in m_squads)
                     {
-                        if(m_navigationMarker.GetEnemyToAttack() != null)
+                        if (m_navigationMarker.GetEnemyToAttack() != null)
                         {
                             squad.m_enemy = m_navigationMarker.GetEnemyToAttack();
                         }
@@ -112,14 +99,14 @@ public class UnitManagerP1 : MonoBehaviour {
                 }
             }
 
-            if (m_controller.RightStickButton.WasPressed)
+            if (m_controller1.RightStickButton.WasPressed)
             {
                 m_camera.changePosition = true;
                 m_camera.MoveCameraTo(m_navigationMarker.transform.position.x, m_navigationMarker.transform.position.z - 10);
             }
 
             //if the right D pad button was pressed
-            if (m_controller.DPadRight.WasPressed)
+            if (m_controller1.DPadRight.WasPressed)
             {
                 allGroundUnitsSelected = false;
 
@@ -149,7 +136,7 @@ public class UnitManagerP1 : MonoBehaviour {
                 SelectedTank(m_squadIndex);
             }
 
-            if (m_controller.DPadLeft.WasPressed)
+            if (m_controller1.DPadLeft.WasPressed)
             {
                 allGroundUnitsSelected = false;
 
@@ -190,7 +177,7 @@ public class UnitManagerP1 : MonoBehaviour {
                 index = 0;
             }
 
-            if (m_controller.Action4.WasPressed && !allGroundUnitsSelected)
+            if (m_controller1.Action4.WasPressed && !allGroundUnitsSelected)
             {
                 SelectAllTanks();
             }

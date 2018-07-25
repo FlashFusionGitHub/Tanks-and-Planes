@@ -302,7 +302,7 @@ MonoBehaviour:
   m_MaxPanX: 50
   m_MinPanZ: -50
   m_MaxPanZ: 50
-  slerpSpeed: 50
+  slerpSpeed: 0.1
   changePosition: 0
 --- !u!124 &264599575
 Behaviour:
@@ -504,8 +504,6 @@ MonoBehaviour:
   m_camera: {fileID: 264599574}
   tank: {fileID: 1952047908304054, guid: ad9789f3e0724194a843a9596b0b0d2d, type: 2}
   spawnLocation: {fileID: 1182126383}
-  spawnTimer: 0
-  spawnTime: 10
 --- !u!4 &544607003 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4840223350431824, guid: 3c2bd458968ea5647bd0ed06d381e3d4,
@@ -1036,8 +1034,6 @@ MonoBehaviour:
   m_camera: {fileID: 1992603240}
   tank: {fileID: 1269639721404880, guid: bb7b6a10123c0ac448c789d1ca825355, type: 2}
   spawnLocation: {fileID: 1867428174}
-  spawnTimer: 0
-  spawnTime: 10
 --- !u!4 &1560932349
 Transform:
   m_ObjectHideFlags: 0
@@ -1526,8 +1522,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1992603239}
-  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
-  m_LocalPosition: {x: 0, y: 50, z: -50}
+  m_LocalRotation: {x: 0.5735764, y: -0, z: -0, w: 0.8191521}
+  m_LocalPosition: {x: 0, y: 50, z: -50.000015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

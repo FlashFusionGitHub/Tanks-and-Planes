@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NavigationArrowActorP2 : MonoBehaviour {
 
-    private InputDevice m_controller;
+    private InputDevice m_controller2;
     private TankActor m_tank;
 
     [SerializeField] private float m_MinXPos = -50.0f, m_MaxXPos = 50.0f;
@@ -15,7 +15,7 @@ public class NavigationArrowActorP2 : MonoBehaviour {
 
     private void Awake()
     {
-         m_controller = InputManager.Devices[1];
+         m_controller2 = InputManager.Devices[1];
     }
 
     // Use this for initialization
@@ -27,7 +27,7 @@ public class NavigationArrowActorP2 : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(-m_controller.LeftStickX, 0, -m_controller.LeftStickY) / markerSpeed;
+        transform.position += new Vector3(-m_controller2.LeftStickX, 0, -m_controller2.LeftStickY) / markerSpeed;
 
         float markerXPos = Mathf.Clamp(transform.position.x, m_MinXPos, m_MaxXPos);
         float markerZPos = Mathf.Clamp(transform.position.z, m_MinZPos, m_MaxZPos);
