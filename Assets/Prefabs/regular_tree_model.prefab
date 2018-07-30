@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4212694696344912}
   m_Layer: 0
-  m_Name: regular_tree
+  m_Name: regular_tree_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
